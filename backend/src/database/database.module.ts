@@ -3,7 +3,7 @@
  * @author Gonzalo Gorgojo.
  */
 
-import { postgresConfig } from '@/ormconfig';
+import { postgresConfig } from '@/orm-config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
