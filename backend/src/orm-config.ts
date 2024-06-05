@@ -8,6 +8,11 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from './user/entities/user.entity';
 import { Role } from './auth/entities/role.entity';
 import { UserRole } from './auth/entities/user-role.entity';
+import { EmailType } from './email/entities/email-type.entity';
+import { Recipient } from './user/entities/recipient.entity';
+import { SentEmailCount } from './email/entities/sent-email-count.entity';
+import { SentEmailRecipient } from './email/entities/sent-email-recipient';
+import { Unsuscribed } from './email/entities/unsuscribed';
 
 ConfigModule.forRoot();
 
@@ -23,7 +28,16 @@ export const postgresConfig: DataSourceOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: [User, Role, UserRole],
+  entities: [
+    User,
+    Role,
+    UserRole,
+    EmailType,
+    Recipient,
+    SentEmailCount,
+    SentEmailRecipient,
+    Unsuscribed,
+  ],
   synchronize: false,
   migrationsTableName: '_migrations',
   migrationsRun: false,
