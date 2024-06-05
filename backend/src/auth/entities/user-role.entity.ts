@@ -25,5 +25,5 @@ export class UserRole {
     onUpdate: 'CASCADE',
   })
   @JoinColumn({ name: 'fk_role_id' })
-  fk_role_id: number;
+  fk_role_id: Role;
 }

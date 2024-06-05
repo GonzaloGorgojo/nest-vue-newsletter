@@ -1,7 +1,7 @@
 /**
  * AuthController controller.
  *
- * @file   This file defines the AuthController controller.
+ * @file   This file defines the AuthController controller. Meant to hold authentication and authorization routes.
  * @author Gonzalo Gorgojo.
  */
 

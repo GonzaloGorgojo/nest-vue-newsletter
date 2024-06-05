@@ -1,7 +1,7 @@
 /**
  * AuthService.
  *
- * @file   This file defines the AuthService class.
+ * @file   This file defines the AuthService class. Meant to hold the authentication logic.
  * @author Gonzalo Gorgojo.
  */
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';

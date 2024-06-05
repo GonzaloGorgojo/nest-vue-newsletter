@@ -13,10 +13,10 @@ export class Role {
   id: number;
 
   @Column({ nullable: false, length: 100 })
-  type: RoleType;
+  type: RoleTypeEnum;
 }
 
-enum RoleType {
+enum RoleTypeEnum {
   ADMIN = 'admin',
   USER = 'user',
 }
