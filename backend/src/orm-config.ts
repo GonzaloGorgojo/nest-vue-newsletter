@@ -5,6 +5,9 @@
 
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { User } from './user/entities/user.entity';
+import { Role } from './auth/entities/role.entity';
+import { UserRole } from './auth/entities/user-role.entity';
 
 ConfigModule.forRoot();
 
@@ -20,7 +23,7 @@ export const postgresConfig: DataSourceOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: ['src/**/*.entity.ts'],
+  entities: [User, Role, UserRole],
   synchronize: false,
   migrationsTableName: '_migrations',
   migrationsRun: false,
