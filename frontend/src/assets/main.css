@@ -1,3 +1,16 @@
-#main-bg {
-  background-color: rgb(0 58 64);
+:root {
+  --mainColor: rgb(0 58 64);
+}
+
+#login-bg {
+  background-color: var(--mainColor);
+}
+
+#admin-bar {
+  background-color: var(--mainColor);
+}
+
+#admin-container {
+  background-color: var(--mainColor);
+  height: 100vh;
 }

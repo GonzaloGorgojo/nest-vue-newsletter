@@ -12,7 +12,7 @@ const handleLogin = () => {
 </script>
 
 <template>
-  <v-app id="main-bg">
+  <v-app id="login-bg">
     <div class="my-10">
       <v-img class="mx-auto my-6" max-width="228" src="@/assets/storil.png"> </v-img>
 

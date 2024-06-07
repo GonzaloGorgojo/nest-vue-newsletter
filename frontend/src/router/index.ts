@@ -13,6 +13,16 @@ const router = createRouter({
           name: 'recipient-list',
           path: '/RecipientsList',
           component: () => import('@/components/RecipientsList.vue')
+        },
+        {
+          name: 'email-type',
+          path: '/EmailType',
+          component: () => import('@/components/EmailType.vue')
+        },
+        {
+          name: 'email-composer',
+          path: '/EmailComposer',
+          component: () => import('@/components/EmailComposer.vue')
         }
       ]
     },
@@ -25,7 +35,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  console.log('userStore.active', userStore.active)
   if (!userStore.active && to.name !== 'login') {
     return { name: 'login' }
   } else {
