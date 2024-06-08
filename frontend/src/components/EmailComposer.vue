@@ -1,23 +1,24 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { emailStore } from '@/store/email.store'
 
-const emailContent = ref('')
-const attachment = ref(null)
-const attachmentName = ref('')
 const showDialog = ref(false)
 
 const handleFileUpload = (event) => {
   const file = event.target.files[0]
-  attachment.value = file
-  attachmentName.value = file.name
+  emailStore.setAttachment(file)
 }
+
+const showButton = computed(() => {
+  return !(emailStore.to.length && emailStore.subject && emailStore.body)
+})
 </script>
 
 <template>
   <v-container class="d-flex flex-column bg-white rounded-lg">
     <v-textarea
       clearable
-      v-model="emailContent"
+      v-model="emailStore.body"
       placeholder="Compose your email"
       variant="solo-filled"
       bg-color="grey-lighten-2"
@@ -30,19 +31,15 @@ const handleFileUpload = (event) => {
       @change="handleFileUpload"
     />
     <div class="text-center pa-4">
-      <v-dialog v-model="showDialog" max-width="400" persistent>
-        <template v-slot:activator="{ props: activatorProps }">
-          <v-btn color="grey-lighten-2" density="default" v-bind="activatorProps">
-            Finish Editing
-          </v-btn>
-        </template>
+      <v-btn :disabled="showButton" @click="showDialog = true"> Finish Editing </v-btn>
 
+      <v-dialog v-model="showDialog" width="auto" persistent>
         <v-card append-icon="mdi-hand-pointing-down" title="Your email will look like this">
-          <v-card-subtitle>To:</v-card-subtitle>
-          <v-card-subtitle>Subject:</v-card-subtitle>
+          <v-card-subtitle>To: {{ emailStore.to.join(', ') }}</v-card-subtitle>
+          <v-card-subtitle>Subject: {{ emailStore.subject }}</v-card-subtitle>
 
-          <v-card-subtitle>Content: {{ emailContent }}</v-card-subtitle>
-          <v-card-subtitle>Attachment: {{ attachmentName }}</v-card-subtitle>
+          <v-card-subtitle>Content: {{ emailStore.body }}</v-card-subtitle>
+          <v-card-subtitle>Attachment: {{ emailStore.attachment?.name ?? '' }}</v-card-subtitle>
 
           <template v-slot:actions>
             <v-spacer></v-spacer>
