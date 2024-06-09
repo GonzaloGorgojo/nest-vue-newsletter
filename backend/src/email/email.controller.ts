@@ -4,13 +4,22 @@
  * @file   This file defines the EmailController controller. Meant to hold email related routes.
  * @author Gonzalo Gorgojo.
  */
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { EmailService } from './email.service';
 import { Unsuscribed } from './entities/unsuscribed';
 import { EmailType } from './entities/email-type.entity';
 import { SentEmailCount } from './entities/sent-email-count.entity';
 import { SentEmailRecipient } from './entities/sent-email-recipient';
-import { EmailTypeDto } from './dto/email-type.dto';
+import { EmailInfoDto } from './dto/email-info.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller('email')
 export class EmailController {
@@ -36,13 +45,12 @@ export class EmailController {
     return this.emailService.getSentEmailRecipient();
   }
 
-  @Post('type')
-  async addEmailType(@Body() emailType: EmailTypeDto) {
-    return this.emailService.addEmailType(emailType);
-  }
-
   @Post('send')
-  async sendEmail() {
-    return this.emailService.sendEmail();
+  @UseInterceptors(FileInterceptor('attachment'))
+  async sendEmail(
+    @Body() info: EmailInfoDto,
+    @UploadedFile() attachment?: Express.Multer.File,
+  ) {
+    return this.emailService.sendEmail(info, attachment);
   }
 }

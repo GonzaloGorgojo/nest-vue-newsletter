@@ -10,13 +10,17 @@ import { DataSource, EntityManager } from 'typeorm';
 import { EmailType } from './entities/email-type.entity';
 import { SentEmailCount } from './entities/sent-email-count.entity';
 import { SentEmailRecipient } from './entities/sent-email-recipient';
-import { EmailTypeDto } from './dto/email-type.dto';
+import { EmailProvider } from './email-provider.service';
+import { EmailInfoDto } from './dto/email-info.dto';
 
 @Injectable()
 export class EmailService {
   logger: Logger;
 
-  constructor(private dataSource: DataSource) {
+  constructor(
+    private dataSource: DataSource,
+    private mailtrapProvider: EmailProvider,
+  ) {
     this.logger = new Logger(EmailService.name);
   }
 
@@ -70,20 +74,9 @@ export class EmailService {
     }
   }
 
-  async addEmailType(emailType: EmailTypeDto) {
+  async sendEmail(info: EmailInfoDto, attachment?: Express.Multer.File) {
     try {
-      const manager: EntityManager = this.dataSource.manager;
-
-      return await manager.save(EmailType, emailType);
-    } catch (error) {
-      this.logger.error(`Error in method: addEmailType, error: ${error}`);
-      throw error;
-    }
-  }
-
-  async sendEmail() {
-    try {
-      // send email logic here
+      return await this.mailtrapProvider.sendBulkEmail(info, attachment);
     } catch (error) {
       this.logger.error(`Error in method: sendEmail, error: ${error}`);
       throw error;
