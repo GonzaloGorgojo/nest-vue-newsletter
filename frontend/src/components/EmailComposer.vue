@@ -23,9 +23,11 @@ const handleSend = async () => {
   if (result?.code === 201) {
     emailStore.clear()
     showDialog.value = false
+    notificationStore.setNotificationColor(true)
     notificationStore.setNotification('Email sent successfully')
   } else {
     showDialog.value = false
+    notificationStore.setNotificationColor(false)
     notificationStore.setNotification('Failed to send email')
   }
   loading.value = false

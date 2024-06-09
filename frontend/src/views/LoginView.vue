@@ -18,6 +18,7 @@ const handleLogin = async () => {
     userStore.setActive(true)
     router.replace('/')
   } else {
+    notificationStore.setNotificationColor(false)
     notificationStore.setNotification('Invalid email or password, please use the ones in the hints')
   }
 }
@@ -69,6 +70,6 @@ const emailRules = [
         </v-btn>
       </v-card>
     </div>
-    <NotificationSnack color="warning" />
+    <NotificationSnack />
   </v-app>
 </template>

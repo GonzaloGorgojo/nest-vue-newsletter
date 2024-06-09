@@ -6,16 +6,13 @@ const showSnackbar = computed(() => {
   return !!notificationStore.newNotification
 })
 
-const props = defineProps({
-  color: {
-    type: String,
-    default: 'success'
-  }
+const snapColor = computed(() => {
+  return notificationStore.color
 })
 </script>
 
 <template>
-  <v-snackbar v-model="showSnackbar" :color="props.color">
+  <v-snackbar v-model="showSnackbar" :color="snapColor ? 'success' : 'warning'">
     {{ notificationStore.newNotification }}
 
     <template v-slot:actions>
