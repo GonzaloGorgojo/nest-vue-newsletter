@@ -5,6 +5,7 @@ import { sendEmail } from '@/api/emailApi'
 import { notificationStore } from '@/store/notification.store'
 
 const showDialog = ref(false)
+const loading = ref(false)
 
 const handleFileUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -18,18 +19,16 @@ const showButton = computed(() => {
 })
 
 const handleSend = async () => {
-  const result = await sendEmail({
-    to: emailStore.to,
-    subject: emailStore.subject,
-    body: emailStore.body,
-    type: emailStore.type,
-    attachment: emailStore.attachment
-  })
+  const result = await sendEmail()
   if (result?.code === 201) {
     emailStore.clear()
     showDialog.value = false
     notificationStore.setNotification('Email sent successfully')
+  } else {
+    showDialog.value = false
+    notificationStore.setNotification('Failed to send email')
   }
+  loading.value = false
 }
 </script>
 
@@ -71,9 +70,11 @@ const handleSend = async () => {
           <template v-slot:actions>
             <v-spacer></v-spacer>
 
-            <v-btn @click="showDialog = false"> Cancel </v-btn>
+            <v-btn color="warning" @click="showDialog = false"> Cancel </v-btn>
 
-            <v-btn @click="handleSend()"> Send </v-btn>
+            <v-btn :loading="loading" color="success" @click="handleSend(), (loading = !loading)">
+              Send
+            </v-btn>
           </template>
         </v-card>
       </v-dialog>

@@ -38,15 +38,15 @@ const handleLogin = () => {
 
       <v-main class="mt-2">
         <v-row>
-          <v-col cols="10" md="2">
+          <v-col cols="12" md="2">
             <EmailType />
           </v-col>
 
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="7">
             <EmailComposer />
           </v-col>
 
-          <v-col cols="10" md="2">
+          <v-col cols="12" md="3">
             <RecipientsList />
           </v-col>
         </v-row>

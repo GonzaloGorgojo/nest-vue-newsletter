@@ -1,24 +1,16 @@
-import type { EmailInfo } from '@/interfaces/email.interface'
+import { emailStore } from '@/store/email.store'
 import httpHelper from '@/utils/httpHelper'
 
-export const callTestApi = async () => {
-  try {
-    const response = await httpHelper.get('/email/type')
-    console.log(response)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export const sendEmail = async (info: EmailInfo) => {
+export const sendEmail = async () => {
   try {
     const formData = new FormData()
 
-    formData.append('to', info.to.join(','))
-    formData.append('subject', info.subject ?? '')
-    formData.append('body', info.body)
-    if (info.attachment) {
-      formData.append('attachment', info.attachment)
+    formData.append('to', emailStore.to.join(','))
+    formData.append('subject', emailStore.subject)
+    formData.append('body', emailStore.body)
+    formData.append('type', emailStore.type ?? '')
+    if (emailStore.attachment) {
+      formData.append('attachment', emailStore.attachment)
     }
 
     const response = await httpHelper.post('/email/send', formData, {

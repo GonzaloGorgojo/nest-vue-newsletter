@@ -12,5 +12,11 @@
 
 #admin-container {
   background-color: var(--mainColor);
-  height: 100vh;
+}
+
+@media (min-width: 1000px) {
+  #admin-container {
+    background-color: var(--mainColor);
+    height: 100vh;
+  }
 }
