@@ -9,7 +9,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { EmailType } from './email-type.entity';
@@ -26,7 +26,7 @@ export class SentEmailCount {
   })
   date_sent: Date;
 
-  @OneToOne(() => User, {
+  @ManyToOne(() => User, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'fk_user_id' })
@@ -35,7 +35,7 @@ export class SentEmailCount {
   @Column({ nullable: false })
   recipient_count: number;
 
-  @OneToOne(() => EmailType, {
+  @ManyToOne(() => EmailType, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'fk_email_type_id' })

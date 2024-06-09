@@ -6,7 +6,7 @@
  */
 
 import { User } from '@/user/entities/user.entity';
-import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from './role.entity';
 
 @Entity({ name: 'user_role' })
@@ -14,13 +14,13 @@ export class UserRole {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => User, {
+  @ManyToOne(() => User, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'fk_user_id' })
   fk_user_id: User;
 
-  @OneToOne(() => Role, {
+  @ManyToOne(() => Role, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })

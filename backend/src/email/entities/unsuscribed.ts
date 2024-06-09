@@ -8,6 +8,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -22,7 +23,7 @@ export class Unsuscribed {
   @Column({ type: 'timestamp', nullable: false })
   date_unsuscribed: Date;
 
-  @OneToOne(() => EmailType, {
+  @ManyToOne(() => EmailType, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'fk_email_type_id' })
