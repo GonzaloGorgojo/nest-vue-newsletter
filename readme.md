@@ -31,6 +31,7 @@ Follow these steps to run the project:
 5. Test it out! 😊
 
 Example video:
+https://github.com/GonzaloGorgojo/stori-challenge/assets/49298587/ea683b3d-4e48-4605-9b8e-bacb3c944989
 
 If you want to develop on project you need to do this steps:
 
