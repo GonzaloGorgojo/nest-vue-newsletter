@@ -1,21 +1,47 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { emailStore } from '@/store/email.store'
+import { sendEmail } from '@/api/emailApi'
+import { notificationStore } from '@/store/notification.store'
 
 const showDialog = ref(false)
 
-const handleFileUpload = (event) => {
-  const file = event.target.files[0]
-  emailStore.setAttachment(file)
+const handleFileUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (target.files && target.files.length > 0) {
+    emailStore.setAttachment(target.files[0])
+  }
 }
 
 const showButton = computed(() => {
-  return !(emailStore.to.length && emailStore.subject && emailStore.body)
+  return !(emailStore.to.length && emailStore.subject && emailStore.body && emailStore.type)
 })
+
+const handleSend = async () => {
+  const result = await sendEmail({
+    to: emailStore.to,
+    subject: emailStore.subject,
+    body: emailStore.body,
+    type: emailStore.type,
+    attachment: emailStore.attachment
+  })
+  if (result?.code === 201) {
+    emailStore.clear()
+    showDialog.value = false
+    notificationStore.setNotification('Email sent successfully')
+  }
+}
 </script>
 
 <template>
   <v-container class="d-flex flex-column bg-white rounded-lg">
+    <v-text-field
+      v-model="emailStore.subject"
+      placeholder="Email Subject"
+      variant="solo-filled"
+      bg-color="grey-lighten-2"
+      clearable
+    />
     <v-textarea
       clearable
       v-model="emailStore.body"
@@ -25,6 +51,7 @@ const showButton = computed(() => {
       rows="15"
     ></v-textarea>
     <v-file-input
+      v-model="emailStore.attachment"
       density="compact"
       accept="image/jpeg, image/png, application/pdf"
       type="file"
@@ -46,7 +73,7 @@ const showButton = computed(() => {
 
             <v-btn @click="showDialog = false"> Cancel </v-btn>
 
-            <v-btn @click="showDialog = false"> Send </v-btn>
+            <v-btn @click="handleSend()"> Send </v-btn>
           </template>
         </v-card>
       </v-dialog>

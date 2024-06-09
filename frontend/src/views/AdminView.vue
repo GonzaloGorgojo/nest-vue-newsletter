@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import EmailComposer from '@/components/EmailComposer.vue'
 import EmailType from '@/components/EmailType.vue'
+import NotificationSnack from '@/components/NotificationSnack.vue'
 import RecipientsList from '@/components/RecipientsList.vue'
 import router from '@/router'
 import { userStore } from '@/store/user.store'
@@ -50,6 +51,7 @@ const handleLogin = () => {
           </v-col>
         </v-row>
       </v-main>
+      <NotificationSnack />
     </v-container>
   </v-app>
 </template>

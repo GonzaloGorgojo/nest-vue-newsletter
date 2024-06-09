@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { emailStore } from '@/store/email.store'
+import { isEmailValid } from '@/utils/validationHelper'
 
 const newRecipient = ref(null)
 
@@ -15,10 +16,6 @@ const deleteRecipient = (recipient: string) => {
   emailStore.removeTo(recipient)
 }
 
-const isEmailValid = (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
 const emailRules = [
   (v: string) => !!v || 'Email is required',
   (v: string) => isEmailValid(v) || 'Email must be valid'

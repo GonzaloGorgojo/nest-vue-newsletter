@@ -2,13 +2,30 @@
 import { ref } from 'vue'
 import { userStore } from '@/store/user.store'
 import router from '@/router'
+import { logIn } from '@/api/authApi'
+import NotificationSnack from '@/components/NotificationSnack.vue'
+import { notificationStore } from '@/store/notification.store'
+import { isEmailValid } from '@/utils/validationHelper'
 
 const visible = ref(false)
+const email = ref('')
+const password = ref('')
 
-const handleLogin = () => {
-  userStore.setActive(true)
-  router.replace('/')
+const handleLogin = async () => {
+  const login = await logIn(email.value, password.value)
+
+  if (login?.code === 200 && login?.data?.token) {
+    userStore.setActive(true)
+    router.replace('/')
+  } else {
+    notificationStore.setNotification('Invalid email or password, please use the ones in the hints')
+  }
 }
+
+const emailRules = [
+  (v: string) => !!v || 'Email is required',
+  (v: string) => isEmailValid(v) || 'Email must be valid'
+]
 </script>
 
 <template>
@@ -24,6 +41,9 @@ const handleLogin = () => {
           placeholder="Email address"
           prepend-inner-icon="mdi-email-outline"
           variant="outlined"
+          v-model="email"
+          hint="For testing purposes use: admin@gmail.com"
+          :rules="emailRules"
         ></v-text-field>
 
         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
@@ -40,10 +60,15 @@ const handleLogin = () => {
           prepend-inner-icon="mdi-lock-outline"
           variant="outlined"
           @click:append-inner="visible = !visible"
+          v-model="password"
+          hint="For testing purposes use: admin1234"
         ></v-text-field>
 
-        <v-btn class="mb-8" color="black" size="large" block @click="handleLogin"> Log In </v-btn>
+        <v-btn class="mb-8 mt-2" color="black" size="large" block @click="handleLogin">
+          Log In
+        </v-btn>
       </v-card>
     </div>
+    <NotificationSnack color="warning" />
   </v-app>
 </template>
