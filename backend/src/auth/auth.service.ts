@@ -8,6 +8,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { DataSource, EntityManager } from 'typeorm';
 import { User } from '@/user/entities/user.entity';
+import { LoginResponseDto } from './dto/login-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
     this.logger = new Logger(AuthService.name);
   }
 
-  async logIn(loginDto: LoginDto) {
+  async logIn(loginDto: LoginDto): Promise<LoginResponseDto> {
     try {
       const manager: EntityManager = this.dataSource.manager;
 
@@ -44,7 +45,7 @@ export class AuthService {
         );
       }
 
-      return { token: 'fakeToken' };
+      return { status: 'success', token: 'fakeToken' };
     } catch (error) {
       this.logger.error(`Error in AuthService, error: ${error}`);
       throw error;
