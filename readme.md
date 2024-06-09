@@ -40,6 +40,9 @@ If you want to develop on project you need to do this steps:
 3. docker compose up -d (this will only create the Postgresql image)
 4. go to backend folder, create .env file with the ones in the example and run `npm install` then `npm run typeorm:run` then `npm run start:dev`.
 5. go to frontend folder and run `npm install` then `npm run dev`
+6. To run end to end test (only backend for now) go to backend folder and run `npm run test`,example:<br>
+
+<img  width="900" src="./assets/test.png" />
 
 This is the Database entity relationshop diagram:
 
