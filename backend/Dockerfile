@@ -18,7 +18,7 @@ ENV POSTGRES_PORT=5432
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
 ENV POSTGRES_DB=postgres
-ENV TOKEN=5efb6d2a2d692df0d0595de9540eede3
+ENV TOKEN=4c1c8926da8a0ff9f699bbf7f7474ec7
 
 # Build the NestJS app
 RUN npm run build
