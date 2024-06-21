@@ -1,6 +1,6 @@
 # Newsletter
 
-The Stori Challenge is to build a Newsletter app. Here's an overview of how it works:
+The Challenge is to build a Newsletter app. Here's an overview of how it works:
 
 ![screenshot](./assets/storidesign.png)
 
