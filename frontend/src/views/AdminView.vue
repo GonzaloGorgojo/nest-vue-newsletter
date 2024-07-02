@@ -16,7 +16,7 @@ const handleLogin = () => {
   <v-app>
     <v-container fluid id="admin-container">
       <v-app-bar elevation="2" class="px-3" density="compact" flat id="admin-bar">
-        <v-app-bar-title class="text-teal-accent-3">Stori Newsletter </v-app-bar-title>
+        <v-app-bar-title class="text-teal-accent-3">Newsletter </v-app-bar-title>
 
         <v-menu>
           <template v-slot:activator="{ props }">

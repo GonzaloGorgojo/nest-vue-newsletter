@@ -32,8 +32,6 @@ const emailRules = [
 <template>
   <v-app id="login-bg">
     <div class="my-10">
-      <v-img class="mx-auto my-6" max-width="228" src="@/assets/storil.png"> </v-img>
-
       <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
         <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 

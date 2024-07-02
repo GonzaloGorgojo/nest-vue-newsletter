@@ -2,13 +2,7 @@
 import { ref } from 'vue'
 import { emailStore } from '@/store/email.store'
 
-const emailTypes = ref([
-  'Stori Cuenta',
-  'Stori Card',
-  'Stori Black',
-  'Stori News',
-  'Stori Prestamo'
-])
+const emailTypes = ref(['Account', 'Card', 'Black Card', 'News', 'Loan'])
 </script>
 
 <template>

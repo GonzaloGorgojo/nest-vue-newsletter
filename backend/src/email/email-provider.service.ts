@@ -24,12 +24,12 @@ export class EmailProvider {
       });
 
       const sender = {
-        email: 'stori.newsletter@gonzalogorgojo.com',
-        name: 'Stori Newsletter',
+        email: 'newsletter@gonzalogorgojo.com',
+        name: 'Newsletter',
       };
       const recipients = [
         {
-          email: 'stori.challenge@gmail.com',
+          email: 'newsletter.app@gmail.com',
         },
       ];
       const blindCopy = info.to.split(',').map((email) => {
@@ -59,7 +59,7 @@ export class EmailProvider {
                 </head>
                 <body style="font-family: sans-serif;">
                     <div style="display: block; margin: auto; max-width: 600px;" class="main">
-                    <h1 style="font-size: 18px; font-weight: bold; margin-top: 20px">Stori Newsletter</h1>
+                    <h1 style="font-size: 18px; font-weight: bold; margin-top: 20px">Newsletter</h1>
                     <p>${info.body}</p>
                     </div>
 

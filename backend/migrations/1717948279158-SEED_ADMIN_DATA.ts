@@ -14,20 +14,14 @@ export class SEEDADMINDATA1717948279158 implements MigrationInterface {
       `INSERT INTO "user_role" (fk_user_id, fk_role_id) VALUES (1, 1);`,
     );
     await queryRunner.query(
-      `INSERT INTO "email_type" (type) VALUES ('Stori Cuenta');`,
+      `INSERT INTO "email_type" (type) VALUES ('Account');`,
     );
+    await queryRunner.query(`INSERT INTO "email_type" (type) VALUES ('Card');`);
     await queryRunner.query(
-      `INSERT INTO "email_type" (type) VALUES ('Stori Card');`,
+      `INSERT INTO "email_type" (type) VALUES ('Black Card');`,
     );
-    await queryRunner.query(
-      `INSERT INTO "email_type" (type) VALUES ('Stori Black');`,
-    );
-    await queryRunner.query(
-      `INSERT INTO "email_type" (type) VALUES ('Stori Prestamo');`,
-    );
-    await queryRunner.query(
-      `INSERT INTO "email_type" (type) VALUES ('Stori News');`,
-    );
+    await queryRunner.query(`INSERT INTO "email_type" (type) VALUES ('Loan');`);
+    await queryRunner.query(`INSERT INTO "email_type" (type) VALUES ('News');`);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

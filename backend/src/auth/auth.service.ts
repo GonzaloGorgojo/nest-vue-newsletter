@@ -29,7 +29,7 @@ export class AuthService {
         throw new HttpException(
           {
             message: 'User with that email does not exist',
-            service: 'stori-backend-service',
+            service: 'backend-service',
           },
 
           HttpStatus.NOT_FOUND,
@@ -39,7 +39,7 @@ export class AuthService {
         throw new HttpException(
           {
             message: 'Invalid password',
-            service: 'stori-backend-service',
+            service: 'backend-service',
           },
           HttpStatus.UNAUTHORIZED,
         );
