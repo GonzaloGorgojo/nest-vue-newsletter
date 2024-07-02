@@ -1,10 +1,10 @@
 # Newsletter
 
-The Challenge is to build a Newsletter app. Here's an overview of how it works:
+This is a Newsletter app. Here's an overview of how it works:
 
-![screenshot](./assets/storidesign.png)
+![screenshot](./assets/design.png)
 
-The app consists of a Frontend (Vue3, Vite, Vue Router, Vuetify) connected to a Backend REST API (Nestjs), which in turn is connected to a PostgreSQL database and an email service provider (Mailtrap). I chose to use a third-party email provider instead of building my own SMTP server to avoid handling reputation and mail rejections from providers like Gmail and Hotmail.
+The app consists of a Frontend (Vue3, Vite, Vue Router, Vuetify) connected to a Backend REST API (Nestjs), which in turn is connected to a PostgreSQL database.
 
 The project has the following folder structure:
 
@@ -31,18 +31,15 @@ Follow these steps to run the project:
 5. Test it out! 😊
 
 Example video:
-https://github.com/GonzaloGorgojo/stori-challenge/assets/49298587/ea683b3d-4e48-4605-9b8e-bacb3c944989
 
 If you want to develop on project you need to do this steps:
 
 1. Clone repo
 2. if you want to work on both backend and frontend go to docker compose file and comment backend and frontend services
 3. docker compose up -d (this will only create the Postgresql image)
-4. go to backend folder, create .env file with the ones in the example and run `npm install` then `npm run typeorm:run` then `npm run start:dev`.
+4. go to backend folder, create .env file with the ones in the example.env and run `npm install` then `npm run typeorm:run` then `npm run start:dev`.
 5. go to frontend folder and run `npm install` then `npm run dev`
 6. To run end to end test (only backend for now) go to backend folder and run `npm run test`,example:<br>
-
-<img  width="900" src="./assets/test.png" />
 
 This is the Database entity relationshop diagram:
 
