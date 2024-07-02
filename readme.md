@@ -24,7 +24,7 @@ To run this project locally, you need the following dependencies:
 
 Follow these steps to run the project:
 
-1. Go to [https://github.com/GonzaloGorgojo/stori-challenge](https://github.com/GonzaloGorgojo/stori-challenge)
+1. Go to [https://github.com/GonzaloGorgojo/nest-vue-newsletter](https://github.com/GonzaloGorgojo/nest-vue-newsletter)
 2. Clone the repository to your local machine
 3. Run the command `docker compose up -d`
 4. Go to [localhost:5173](http://localhost:5173)
